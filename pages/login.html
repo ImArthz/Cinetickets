@@ -1,80 +1,46 @@
-<!--
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="../styles/geral.css">
-  <link rel="stylesheet" type="text/css" href="../styles/login.css">
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-</head>
-<body>
-  <nav>
-    <a href="./cadastro.html">Cadastrar</a><
-  </nav>
-  <div class ="login-box"> 
-    <h2>Login</h2>
-    <form id="login-form">
-      <div class="user-box">
-        <input type="email" id="email" placeholder="Email" required>
-      </div>
-      <div class="user-box">
-        <input type="password" id="password" placeholder="Senha" required>
-      </div>
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
-  
-  <script src="../scripts/login.js"></script>
-</body>
-</html>
--->
-<!-- we could change so the user doesn't need to register to enter the website ps : i dont know how to do this -->
-<!-- login form but its already build it change it to work with out firebase project -->
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
     <title>Login - CineTickets</title>
-    <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   </head>
   <body>
+    <header>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="../pages/loja.html">Home</a></li>
+          <li><a href="../pages/about.html">About</a></li>
+          <li><a href="../pages/contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
 
-   <header>
-  <nav class="navbar">
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="../pages/about.html">About</a></li>
-      <li><a href="../pages/contact.html">Contact Us</a></li>
-    </ul>
-  </nav>
-</header>
-    <!-- Login Container -->
     <div class="container">
-      <form action="#">
+      <form id="login-form">
         <div class="title">Login</div>
         <div class="logo">
-      <img src="../assets/logo.png" alt="CineTickets Logo">
+          <img src="../assets/logo.png" alt="CineTickets Logo">
         </div>
         <div class="input-box underline">
-          <input type="text" placeholder="Enter Your Email" required>
+          <input type="email" id="email" placeholder="Enter Your Email" required>
           <div class="underline"></div>
         </div>
         <div class="input-box">
-          <input type="password" placeholder="Enter Your Password" required>
+          <input type="password" id="password" placeholder="Enter Your Password" required>
           <div class="underline"></div>
         </div>
         <div class="input-box button">
+          <button type="button" onclick="window.location.href='../pages/cadastro.html'">Register</button>
           <input type="submit" value="Continue">
         </div>
+
       </form>
 
       <div class="option">or Connect With Social Media</div>
@@ -82,17 +48,9 @@
       <div class="google">
         <a href="#"><i class="fab fa-google"></i>Sign in With Google</a>
       </div>
-      <div class="twitter">
-        <a href="#"><i class="fab fa-twitter"></i>Sign in With Twitter</a>
-      </div>
-      <div class="facebook">
-        <a href="#"><i class="fab fa-facebook-f"></i>Sign in With Facebook</a>
-      </div>
-      <div class="instagram">
-        <a href="#"><i class="fab fa-instagram"></i>Sign in With Instagram</a>
-      </div>
+      <!-- você pode deixar twitter/facebook etc prontos quando quiser -->
     </div>
 
-    <script src="../scripts/login.js"></script>
+   <script src="../script/login.js"></script>
   </body>
 </html>

@@ -74,13 +74,13 @@ const analytics = getAnalytics(app);
 // config we will problably just run this one 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAW9jtf-VkWJqTnjrpBY-bJhfqRArPsNko",
-  authDomain: "citickets.firebaseapp.com",
-  projectId: "citickets",
-  storageBucket: "citickets.firebasestorage.app",
-  messagingSenderId: "846716527165",
-  appId: "1:846716527165:web:fb8e71b663269e7e910054",
-  measurementId: "G-1Z8WJL37V7"
+  apiKey: "AIzaSyCE3oyJUy8xtk5yHefTEw7OKIZzmwXy2yc",
+  authDomain: "cinetickets-dcd74.firebaseapp.com",
+  projectId: "cinetickets-dcd74",
+  storageBucket: "cinetickets-dcd74.firebasestorage.app",
+  messagingSenderId: "668550086739",
+  appId: "1:668550086739:web:19ad60ba88659b0c11c6a6",
+  measurementId: "G-WQ8VC7812N"
 };
 // we need to install firebase 
 firebase.initializeApp(firebaseConfig);

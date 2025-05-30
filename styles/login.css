@@ -27,7 +27,7 @@ header {
 
 .navbar {
   width: 100%;
-  background: #3c3c3c;
+  background: #fffafa;
   padding: 20px 40px;
   display: flex;
   flex-direction: column;
@@ -84,14 +84,14 @@ header {
 }
 
 .container .logo {
-  margin-left: 180px;
-  margin-top: -70px;
-  margin-block: -60px ;
+  margin-left: 150px;
+  margin-top: -60px;  
+  margin-block: -70px ;
 }
 
 .container .logo img {
-  height: 124px;
-  width: 124px;
+  height: 148px;
+  width: 148px;
 
 }
 .container form .title:before {
@@ -155,9 +155,14 @@ header {
 
 .container form .button {
   margin: 40px 0 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
 }
 
-.container .input-box input[type="submit"] {
+.container form .button button,
+.container form .button input[type="submit"] {
+  flex: 1;
   background: #FFD700;
   font-size: 17px;
   color: #000;
@@ -168,7 +173,8 @@ header {
   padding: 10px 0;
 }
 
-.container .input-box input[type="submit"]:hover {
+.container form .button button:hover,
+.container form .button input[type="submit"]:hover {
   background: #FFC107;
   letter-spacing: 1px;
 }

@@ -1,54 +1,64 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Verificar se há um "user" no localStorage
-  const user = localStorage.getItem('user');
-  
-  // Se existir um "user", redirecionar para "loja.html"
-  if (user) {
-    window.location.href = "../loja.html"
+// CONFIG FIREBASE (mesma config em todos os scripts)
+const firebaseConfig = {
+  apiKey: "AIzaSyCE3oyJUy8xtk5yHefTEw7OKIZzmwXy2yc",
+  authDomain: "cinetickets-dcd74.firebaseapp.com",
+  projectId: "cinetickets-dcd74",
+  storageBucket: "cinetickets-dcd74.firebasestorage.app",
+  messagingSenderId: "668550086739",
+  appId: "1:668550086739:web:19ad60ba88659b0c11c6a6",
+  measurementId: "G-WQ8VC7812N"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+/* redireciona se já estiver logado
+document.addEventListener('DOMContentLoaded', () => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) window.location.href = "../pages/loja.html";
+  });
+});
+*/
+
+// LOGIN EMAIL/SENHA
+const loginForm = document.getElementById('login-form');
+loginForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  try {
+    const cred = await firebase.auth().signInWithEmailAndPassword(email, password);
+    const u = cred.user;
+    // opcional: buscar dados adicionais no Firestore
+    const snap = await firebase.firestore().collection('usuarios').doc(u.uid).get();
+    const data = snap.exists ? snap.data() : { email: u.email };
+    localStorage.setItem('user', JSON.stringify({ uid: u.uid, ...data }));
+    window.location.href = "../pages/loja.html";
+  } catch (err) {
+    console.error(err);
+    alert("Usuário ou senha incorretos.");
   }
 });
 
-// Configuração do Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAW9jtf-VkWJqTnjrpBY-bJhfqRArPsNko",
-  authDomain: "citickets.firebaseapp.com",
-  projectId: "citickets",
-  storageBucket: "citickets.firebasestorage.app",
-  messagingSenderId: "846716527165",
-  appId: "1:846716527165:web:fb8e71b663269e7e910054",
-  measurementId: "G-1Z8WJL37V7"
-};
-  
-// Inicialização do Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Referência ao formulário
-const loginForm = document.getElementById('login-form');
-  
-// Manipulador de evento de envio do formulário
-loginForm.addEventListener('submit', async (e) => {
+// LOGIN COM GOOGLE
+document.querySelector(".google a").addEventListener("click", async e => {
   e.preventDefault();
-  // Obtenção dos valores de email e senha
-  const email = loginForm['email'].value;
-  const password = loginForm['password'].value;
-  var db = firebase.firestore()
-  const usuarios = db.collection('usuarios')
-
-  const logado = await usuarios.where("email","==",email).get()
-  if(logado.empty){
-    alert("Usuário ou Senha incorretos")
-    return
+  const provider = new firebase.auth.GoogleAuthProvider();
+  try {
+    const result = await firebase.auth().signInWithPopup(provider);
+    const user = result.user;
+    // salva ou atualiza no Firestore
+    await firebase.firestore().collection('usuarios').doc(user.uid).set({
+      nome: user.displayName,
+      email: user.email
+    }, { merge: true });
+    localStorage.setItem('user', JSON.stringify({
+      uid: user.uid,
+      nome: user.displayName,
+      email: user.email
+    }));
+    window.location.href = "../pages/loja.html";
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao fazer login com Google.");
   }
-  logado.forEach(documento => {
-    dados = documento.data()
-    dados.id = documento.id
-  });
-  if (dados.senha == password){
-    alert("Logado com sucesso!")
-    localStorage.setItem('user', JSON.stringify(dados));
-    window.location.href = "../loja.html"
-  }
-  else{
-    alert("Usuário ou Senha incorretos")
-  }
-})
+});
