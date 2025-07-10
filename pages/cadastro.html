@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cadastro - CineTickets</title>
+    <link rel="stylesheet" href="../styles/login.css"><!-- pode ser o mesmo estilo do login -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="./login.html">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <form id="signup-form">
+        <div class="title">Cadastro</div>
+        <div class="input-box">
+          <input type="text" id="nome" placeholder="Enter Your Name" required>
+        </div>
+        <div class="input-box">
+          <input type="email" id="email" placeholder="Enter Your Email" required>
+        </div>
+        <div class="input-box">
+          <input type="password" id="password" placeholder="Enter Your Password" required>
+        </div>
+        <div class="input-box button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+
+   <script src="../script/cadastro.js"></script>
+  </body>
+</html>

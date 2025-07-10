@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  place-items: center;
+  background: linear-gradient(to bottom right, #121212, #1c1c1c, #000000);
+  color: #ffffff;
+}
+
+/* Navbar com fundo branco, links centralizados e estilo de botão */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar {
+  width: 100%;
+  background: #fffafa;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar .nav-links li a {
+  padding: 8px 16px;
+  color: #000;
+  font-weight: 500;
+  text-decoration: none;
+  border: 2px solid #FFD700;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+  background-color: #FFD700;
+  color: #000;
+  box-shadow: 0 0 10px #FFD70080;
+  transform: translateY(-2px);
+}
+
+::selection {
+  background: #FFD700;
+  color: #000;
+}
+
+.container {
+  background: #2a2a2a;
+  max-width: 350px;
+  width: 100%;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  margin-top: 140px; /* espaço para navbar */
+}
+
+.container form .title {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 20px 0 10px 0;
+  position: relative;
+  color: #FFD700;
+}
+
+.container .logo {
+  margin-left: 150px;
+  margin-top: -60px;  
+  margin-block: -70px ;
+}
+
+.container .logo img {
+  height: 148px;
+  width: 148px;
+
+}
+.container form .title:before {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 33px;
+  left: 0px;
+  bottom: 3px;
+  border-radius: 5px;
+  background: #FFD700;
+}
+
+.container form .input-box {
+  width: 100%;
+  height: 45px;
+  margin-top: 25px;
+  position: relative;
+}
+
+.container form .input-box input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  font-size: 16px;
+  border: none;
+  background: #3c3c3c;
+  color: #fff;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+.container form .underline::before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #555;
+  left: 0;
+  bottom: 0;
+}
+
+.container form .underline::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #FFD700;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.3s ease;
+}
+
+.container form .input-box input:focus ~ .underline::after,
+.container form .input-box input:valid ~ .underline::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.container form .button {
+  margin: 40px 0 20px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.container form .button button,
+.container form .button input[type="submit"] {
+  flex: 1;
+  background: #FFD700;
+  font-size: 17px;
+  color: #000;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 10px 0;
+}
+
+.container form .button button:hover,
+.container form .button input[type="submit"]:hover {
+  background: #FFC107;
+  letter-spacing: 1px;
+}
+
+.container .option {
+  font-size: 14px;
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.container .facebook a,
+.container .twitter a,
+.container .google a,
+.container .instagram a {
+  display: block;
+  height: 45px;
+  width: 100%;
+  font-size: 15px;
+  text-decoration: none;
+  padding-left: 20px;
+  line-height: 45px;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.container .facebook i,
+.container .twitter i,
+.container .google i,
+.container .instagram i {
+  padding-right: 12px;
+  font-size: 20px;
+}
+
+.container .twitter a {
+  background: linear-gradient(to right, #1DA1F2, #0d8ddb);
+}
+
+.container .twitter a:hover {
+  background: linear-gradient(to left, #1DA1F2, #0d8ddb);
+}
+
+.container .facebook a {
+  background: linear-gradient(to right, #3b5998, #2d4373);
+}
+
+.container .facebook a:hover {
+  background: linear-gradient(to left, #3b5998, #2d4373);
+}
+
+.container .google a {
+  background: linear-gradient(to right, #dd4b39, #e74c3c);
+}
+
+.container .google a:hover {
+  background: linear-gradient(to left, #dd4b39, #e74c3c);
+}
+
+.container .instagram a {
+  background: linear-gradient(to right, #C13584, #E1306C);
+}
+
+.container .instagram a:hover {
+  background: linear-gradient(to left, #C13584, #E1306C);
+}
