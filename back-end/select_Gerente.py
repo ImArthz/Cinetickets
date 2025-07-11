@@ -3,6 +3,9 @@ import mysql.connector
 
 def lambda_handler(event, context):
     id = event.get('cpf')  # Pegando o CPF via evento
+    nome = event.get('nome')  # Pegando o nome via evento
+    email = event.get('email')  # Pegando o email via evento
+    senha = event.get('senha')  # Pegando a senha via evento
     try:
         connection = mysql.connector.connect(
             host='52.14.177.95',        # Seu host
@@ -13,8 +16,31 @@ def lambda_handler(event, context):
         )
 
         cursor = connection.cursor()
-        query = f"SELECT * FROM Gerente where cpf = \"{id}\";"
-        cursor.execute(query)
+        conditions = []
+        params = []
+
+        if id:  # Se numero não for vazio ou None, adiciona condição
+            conditions.append("cpf = %s")
+            params.append(id)
+
+        if nome:
+            conditions.append("nome = %s")
+            params.append(nome)
+
+        if email:
+            conditions.append("email = %s")
+            params.append(email)
+        if senha:
+            conditions.append("senha = %s")
+            params.append(senha)
+        query = "SELECT * FROM Gerente"
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+        query += ";"
+        print(query)
+        print(params)
+        print("Executing query...")
+        cursor.execute(query,params)
         results = cursor.fetchall()
 
         columns = [desc[0] for desc in cursor.description]
@@ -36,10 +62,10 @@ def lambda_handler(event, context):
         }
 
 # Exemplo de uso da função lambda_handler
-'''
+
 event = {
-    'cpf': '123.123.222.17'
+    'nome': 'joao'
 }
 print(lambda_handler(event,None))
 
-'''
+
