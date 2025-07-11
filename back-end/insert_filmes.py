@@ -46,7 +46,7 @@ def lambda_handler(event, context):
 # Exemplo de uso
 event = {
     'cinema_nome': 'Cinehitz',
-    'cinema_cidade': 'Divinópolis',
+    'cinema_cidade': 'Divinópolis 3',
     'titulo': 'Matrix Reloaded',
     'trailer': 'https://youtube.com/matrix',
     'poster': 'https://imglink.com/matrix.jpg',

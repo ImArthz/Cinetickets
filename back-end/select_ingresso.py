@@ -8,6 +8,7 @@ def lambda_handler(event, context):
     sessao_horario = event.get('sessao_horario')
     filme_titulo = event.get('filme_titulo')
     ingresso_id = event.get('ingresso_id')
+    numero_poltrona = event.get('numero_poltrona')
 
     try:
         connection = mysql.connector.connect(
@@ -19,26 +20,43 @@ def lambda_handler(event, context):
         )
 
         cursor = connection.cursor()
+        conditions = []
+        params = []
+        if cinema_nome:  # Se numero não for vazio ou None, adiciona condição
+            conditions.append("cinema_nome = %s")
+            params.append(cinema_nome)
 
-        query = """
-            SELECT * FROM Ingresso 
-            WHERE cinema_nome = %s 
-              AND cinema_cidade = %s 
-              AND sala_numero = %s 
-              AND sessao_horario = %s 
-              AND filme_titulo = %s 
-              AND ingresso_id = %s
-        """
-        valores = (
-            cinema_nome, 
-            cinema_cidade, 
-            sala_numero, 
-            sessao_horario, 
-            filme_titulo, 
-            ingresso_id
-        )
+        if cinema_cidade:
+            conditions.append("cinema_cidade = %s")
+            params.append(cinema_cidade)
 
-        cursor.execute(query, valores)
+        if sala_numero:
+            conditions.append("sala_numero = %s")
+            params.append(sala_numero)
+
+        if sessao_horario:
+            conditions.append("sessao_horario = %s")
+            params.append(sessao_horario)
+
+        if filme_titulo:
+            conditions.append("filme_titulo = %s")
+            params.append(filme_titulo)
+
+        if ingresso_id:
+            conditions.append("ingresso_id = %s")
+            params.append(ingresso_id)
+        if numero_poltrona:
+            conditions.append("numero_poltrona = %s")
+            params.append(numero_poltrona)
+
+        query = "SELECT * FROM Ingresso"
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+        query += ";"
+        print(query)
+        print(params)
+        print("Executing query...")
+        cursor.execute(query,params)
         results = cursor.fetchall()
         columns = [desc[0] for desc in cursor.description]
 
@@ -60,12 +78,8 @@ def lambda_handler(event, context):
 
 # Exemplo de chamada
 event = {
-    'cinema_nome': 'Cinehitz2',
-    'cinema_cidade': 'Divinópolis',
-    'sala_numero': 1,
-    'sessao_horario': '2025-07-11 20:00:00',
-    'filme_titulo': 'LOST',
-    'ingresso_id': 12345678
+    'ingresso_id': '12345608',
+
 }
 
 print(lambda_handler(event, None))

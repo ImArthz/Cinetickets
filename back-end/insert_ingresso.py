@@ -44,7 +44,7 @@ def lambda_handler(event, context):
 
 # Exemplo de uso
 event = {
-    'cinema_nome': 'Cinehitz2',
+    'cinema_nome': 'Cinehitz',
     'cinema_cidade': 'Divinópolis',
     'sala_numero': 1,
     'sessao_horario': '2025-07-11 20:00:00',

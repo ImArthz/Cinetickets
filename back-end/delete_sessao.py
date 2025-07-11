@@ -55,11 +55,11 @@ def lambda_handler(event, context):
 
 # Exemplo de chamada
 event = {
-    'cinema_nome': 'Cinehitz2',
-    'cinema_cidade': 'Divinópolis',
+    'cinema_nome': 'Cinehitz',
+    'cinema_cidade': 'Divinópolis3',
     'sala_numero': 1,
     'horario': '2025-07-11 20:00:01',
-    'filme_titulo': 'LOST'
+    'filme_titulo': 'LOST2'
 }
 
 print(lambda_handler(event, None))
