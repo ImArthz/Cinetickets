@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login - CineTickets</title>
+  <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="../pages/loja.html">Home</a></li>
+          <li><a href="../pages/about.html">About</a></li>
+          <li><a href="../pages/contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <form id="login-form">
+        <div class="title">Login</div>
+        <div class="logo">
+          <img src="../assets/logo.png" alt="CineTickets Logo">
+        </div>
+        <div class="input-box underline">
+          <input type="email" id="email" placeholder="Enter Your Email" required>
+          <div class="underline"></div>
+        </div>
+        <div class="input-box">
+          <input type="password" id="password" placeholder="Enter Your Password" required>
+          <div class="underline"></div>
+        </div>
+        <div class="input-box button">
+          <button type="button" onclick="window.location.href='../pages/cadastro.html'">Register</button>
+          <input type="submit" value="Continue">
+        </div>
+
+      </form>
+
+      <div class="option">or Connect With Social Media</div>
+
+      <div class="google">
+        <a href="#"><i class="fab fa-google"></i>Sign in With Google</a>
+      </div>
+      <!-- você pode deixar twitter/facebook etc prontos quando quiser -->
+    </div>
+
+   <script src="../script/login.js"></script>
+  </body>
+</html>

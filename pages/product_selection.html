@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/product_selection.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Tickets</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="movie_selection.html">Filmes</a></li>
+                <li><a href="cinema_selection.html">Cinemas</a></li>
+                <li><a href="promotions.html">Promoções</a></li>
+                <li><a href="admin_login.html">Área do Funcionário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="breadcrumb">
+            <p><a href="index.html">Início</a> > <a href="cinema_selection.html">Cinemas</a> > <a href="movie_selection.html">Filmes</a> > <a href="seat_selection.html">Assentos</a> > Produtos</p>
+        </section>
+
+        <section class="order-summary">
+            <h2>Resumo do Pedido</h2>
+            <div class="order-details">
+                <p id="cinema-name"></p>
+                <p id="movie-info"></p>
+                <p id="session-info"></p>
+                <p id="seats-info"></p>
+            </div>
+        </section>
+
+        <section class="product-selection">
+            <h2>Adicione Produtos ao seu Pedido</h2>
+            <p class="subtitle">Deseja adicionar pipoca ou bebidas? (Opcional)</p>
+
+            <div class="product-categories">
+                <!-- Seção de Pipocas -->
+                <div class="category">
+                    <h3>🍿 Pipocas</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/150x150" alt="Pipoca Salgada">
+                            <div class="product-info">
+                                <h4>Pipoca Salgada</h4>
+                                <div class="size-options">
+                                    <div class="size-option" data-product="pipoca-salgada" data-size="pequena" data-price="8.50">
+                                        <span>Pequena</span>
+                                        <span class="price">R$ 8,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="pipoca-salgada" data-size="media" data-price="12.00">
+                                        <span>Média</span>
+                                        <span class="price">R$ 12,00</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="pipoca-salgada" data-size="grande" data-price="16.50">
+                                        <span>Grande</span>
+                                        <span class="price">R$ 16,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/150x150" alt="Pipoca Doce">
+                            <div class="product-info">
+                                <h4>Pipoca Doce</h4>
+                                <div class="size-options">
+                                    <div class="size-option" data-product="pipoca-doce" data-size="pequena" data-price="9.00">
+                                        <span>Pequena</span>
+                                        <span class="price">R$ 9,00</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="pipoca-doce" data-size="media" data-price="13.00">
+                                        <span>Média</span>
+                                        <span class="price">R$ 13,00</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="pipoca-doce" data-size="grande" data-price="17.50">
+                                        <span>Grande</span>
+                                        <span class="price">R$ 17,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção de Bebidas -->
+                <div class="category">
+                    <h3>🥤 Bebidas</h3>
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/150x150" alt="Refrigerante">
+                            <div class="product-info">
+                                <h4>Refrigerante</h4>
+                                <div class="size-options">
+                                    <div class="size-option" data-product="refrigerante" data-size="pequeno" data-price="6.50">
+                                        <span>Pequeno (300ml)</span>
+                                        <span class="price">R$ 6,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="refrigerante" data-size="medio" data-price="9.50">
+                                        <span>Médio (500ml)</span>
+                                        <span class="price">R$ 9,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="refrigerante" data-size="grande" data-price="12.50">
+                                        <span>Grande (700ml)</span>
+                                        <span class="price">R$ 12,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/150x150" alt="Suco">
+                            <div class="product-info">
+                                <h4>Suco Natural</h4>
+                                <div class="size-options">
+                                    <div class="size-option" data-product="suco" data-size="pequeno" data-price="7.00">
+                                        <span>Pequeno (300ml)</span>
+                                        <span class="price">R$ 7,00</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="suco" data-size="medio" data-price="10.50">
+                                        <span>Médio (500ml)</span>
+                                        <span class="price">R$ 10,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="suco" data-size="grande" data-price="14.00">
+                                        <span>Grande (700ml)</span>
+                                        <span class="price">R$ 14,00</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <img src="https://via.placeholder.com/150x150" alt="Água">
+                            <div class="product-info">
+                                <h4>Água Mineral</h4>
+                                <div class="size-options">
+                                    <div class="size-option" data-product="agua" data-size="pequena" data-price="4.50">
+                                        <span>Pequena (300ml)</span>
+                                        <span class="price">R$ 4,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="size-option" data-product="agua" data-size="grande" data-price="6.50">
+                                        <span>Grande (500ml)</span>
+                                        <span class="price">R$ 6,50</span>
+                                        <div class="quantity-controls">
+                                            <button class="qty-btn minus">-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="qty-btn plus">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ícone do Carrinho -->
+        <div class="cart-icon" id="cart-icon">
+            <span class="cart-emoji">🛒</span>
+            <span class="cart-count" id="cart-count">0</span>
+            <span class="cart-total" id="cart-total-display">R$ 0,00</span>
+        </div>
+
+        <!-- Modal do Carrinho -->
+        <div class="cart-modal" id="cart-modal">
+            <div class="cart-modal-content">
+                <div class="cart-modal-header">
+                    <h3>Resumo do Carrinho</h3>
+                    <button class="close-cart" id="close-cart">&times;</button>
+                </div>
+                <div class="cart-modal-body">
+                    <div id="cart-items"></div>
+                    <div class="total-section">
+                        <p class="subtotal">Ingressos: <span id="tickets-total">R$ 0,00</span></p>
+                        <p class="subtotal">Produtos: <span id="products-total">R$ 0,00</span></p>
+                        <p class="total">Total Geral: <span id="grand-total">R$ 0,00</span></p>
+                    </div>
+                </div>
+                <div class="cart-modal-footer">
+                    <button id="continue-btn" class="continue-btn">Continuar para Pagamento</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cinema Tickets. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script src="../script/product_selection.js"></script>
+</body>
+</html>
+

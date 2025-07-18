@@ -1,0 +1,244 @@
+/* Estilos para a página de login administrativo */
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    height: fit-content;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.admin-icon {
+    font-size: 4em;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.login-header h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.8em;
+}
+
+.login-header p {
+    margin: 0;
+    color: #666;
+    font-size: 1em;
+}
+
+.login-form {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.demo-credentials {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.demo-credentials h4 {
+    margin: 0 0 15px 0;
+    color: #495057;
+    text-align: center;
+}
+
+.demo-section {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.demo-section:last-child {
+    margin-bottom: 0;
+}
+
+.demo-section strong {
+    color: #007bff;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.demo-section p {
+    margin: 0;
+    color: #666;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.error-icon {
+    font-size: 1.2em;
+}
+
+.features-info {
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.features-info h3 {
+    text-align: center;
+    color: #333;
+    margin: 0 0 25px 0;
+    font-size: 1.5em;
+}
+
+.feature-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.feature-card:last-child {
+    margin-bottom: 0;
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    flex-shrink: 0;
+}
+
+.feature-content h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.feature-content ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #666;
+}
+
+.feature-content li {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+/* Navegação ativa */
+nav ul li a.active {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 20px auto;
+        padding: 15px;
+    }
+    
+    .login-card {
+        padding: 30px 20px;
+    }
+    
+    .features-info {
+        padding: 25px 20px;
+    }
+    
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .admin-icon {
+        font-size: 3em;
+    }
+    
+    .login-header h2 {
+        font-size: 1.5em;
+    }
+}
+

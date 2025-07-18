@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineTickets – Escolha seu Cinema</title>
+
+  <!-- CSS dedicado da loja -->
+  <link rel="stylesheet" href="../styles/loja.css" />
+
+  <!-- Firebase JS SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+  <main>
+    <!-- MENU LATERAL: agora começa com 20px de largura, e expande para 250px no hover -->
+    <div class="menu-lateral">
+      <h3>Menu</h3>
+      <ul>
+        <li><a href="../pages/filmes-destaque.html">Filmes em Destaque</a></li>
+        <li><a href="../pages/cadastro.html">Cadastro</a></li>
+        <li><a href="../pages/login.html">Login Funcionário</a></li>
+        <li><a href="../pages/about.html">Sobre Nós</a></li>
+      </ul>
+    </div>
+
+    <!-- ÁREA DO GRID DE CINEMAS -->
+    <div class="grid-container">
+      <h1 style="color: #FFD700; text-align: center; margin-top: 20px;">
+        Escolha seu Cinema
+      </h1>
+      <div class="cinema-grid" id="cinema-grid"></div>
+    </div>
+  </main>
+
+  <!-- JS da loja -->
+  <script src="../script/loja.js"></script>
+</body>
+</html>

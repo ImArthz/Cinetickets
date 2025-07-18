@@ -1,0 +1,348 @@
+/* Estilos para a página de confirmação */
+
+.confirmation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.success-message {
+    text-align: center;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 16px rgba(40, 167, 69, 0.3);
+}
+
+.success-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.success-message h1 {
+    margin: 0 0 15px 0;
+    font-size: 2.2em;
+}
+
+.success-message p {
+    margin: 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.receipt-container {
+    background-color: #fff;
+    border: 2px solid #dee2e6;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.receipt-header {
+    text-align: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.receipt-header h2 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.8em;
+}
+
+.receipt-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 1em;
+}
+
+.customer-info,
+.session-details,
+.order-items,
+.payment-info {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.customer-info:last-child,
+.session-details:last-child,
+.order-items:last-child,
+.payment-info:last-child {
+    border-bottom: none;
+}
+
+.customer-info h3,
+.session-details h3,
+.order-items h3,
+.payment-info h3 {
+    color: #007bff;
+    margin: 0 0 15px 0;
+    font-size: 1.3em;
+}
+
+.customer-info p,
+.session-details p,
+.payment-info p {
+    margin: 8px 0;
+    color: #333;
+}
+
+.session-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #007bff;
+}
+
+.items-section {
+    margin-bottom: 20px;
+}
+
+.items-section h4 {
+    color: #333;
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+}
+
+.item-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.item-line:last-child {
+    border-bottom: none;
+}
+
+.qr-code-container {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.qr-code {
+    flex-shrink: 0;
+}
+
+.qr-placeholder {
+    width: 150px;
+    height: 150px;
+    background-color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    text-align: center;
+    color: #007bff;
+}
+
+.qr-placeholder small {
+    font-size: 0.6em;
+    margin-top: 5px;
+}
+
+.pix-instructions {
+    flex: 1;
+    color: #333;
+    line-height: 1.6;
+}
+
+.total-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    color: #666;
+}
+
+.grand-total-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #dee2e6;
+}
+
+.receipt-footer {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.receipt-footer p {
+    margin: 0 0 10px 0;
+    color: #856404;
+    font-weight: bold;
+}
+
+.receipt-footer ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #856404;
+}
+
+.receipt-footer li {
+    margin: 5px 0;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.print-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.print-btn:hover {
+    background-color: #5a6268;
+}
+
+.download-btn {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #138496;
+}
+
+.email-btn {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.email-btn:hover {
+    background-color: #e0a800;
+}
+
+.home-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.home-btn:hover {
+    background-color: #0056b3;
+}
+
+.email-status {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.status-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #155724;
+    font-weight: bold;
+}
+
+.status-icon {
+    font-size: 1.2em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .confirmation-container {
+        padding: 15px;
+    }
+    
+    .receipt-container {
+        padding: 20px;
+    }
+    
+    .success-message {
+        padding: 30px 15px;
+    }
+    
+    .success-message h1 {
+        font-size: 1.8em;
+    }
+    
+    .qr-code-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .grand-total-line {
+        font-size: 1.2em;
+    }
+}
+
+/* Estilos para impressão */
+@media print {
+    header, footer, .action-buttons {
+        display: none;
+    }
+    
+    .confirmation-container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .success-message {
+        background: none !important;
+        color: #333 !important;
+        box-shadow: none !important;
+    }
+    
+    .receipt-container {
+        box-shadow: none !important;
+        border: 1px solid #333 !important;
+    }
+}
+

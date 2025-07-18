@@ -1,0 +1,131 @@
+/* styles/loja.css */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom right, #121212, #1c1c1c, #000000);
+  color: #fff;
+}
+
+main {
+  display: flex;
+  height: 100vh; /* garante que o menu lateral ocupe toda a altura para hover */
+}
+
+/* ------------------------------------------------ */
+/* MENU LATERAL – VERSÃO “ABA” DE 20px QUE EXPANDE NO HOVER */
+/* ------------------------------------------------ */
+.menu-lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 20px;                /* mostra apenas 20px quando retraído */
+  background-color: #000;     /* fundo preto */
+  overflow-x: hidden;         /* esconde todo o conteúdo interno exceto a aba */
+  transition: width 0.3s ease;
+  z-index: 1000;
+}
+
+/* Ao passar o mouse em qualquer parte da div (mesmo a faixa de 20px), ela aumenta para 250px */
+.menu-lateral:hover {
+  width: 250px;
+}
+
+/* Títulos e lista do menu ficam dentro, mas só aparecem totalmente quando expandido */
+.menu-lateral h3 {
+  color: #FFD700;
+  margin: 20px;
+  font-size: 1.5rem;
+  opacity: 0;             /* inicialmente oculto (opacidade zero) */
+  transition: opacity 0.3s ease 0.1s;
+}
+
+.menu-lateral:hover h3 {
+  opacity: 1;              /* ao expandir, título aparece */
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  opacity: 0;              /* inicialmente oculto */
+  transition: opacity 0.3s ease 0.15s;
+}
+
+.menu-lateral:hover ul {
+  opacity: 1;              /* mostra ao expandir */
+}
+
+.menu-lateral li {
+  margin-bottom: 15px;
+}
+
+.menu-lateral a {
+  display: block;
+  color: #fff;            /* texto branco */
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-lateral a:hover {
+  background-color: #FFD700;
+  color: #000;
+}
+
+/* ------------------------------------------------ */
+/* GRID DE CINEMAS (conteúdo principal)             */
+/* ------------------------------------------------ */
+.grid-container {
+  flex: 1;
+  margin-left: 20px;       /* deixa um espaço para a aba do menu lateral */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+/* Título */
+.grid-container h1 {
+  margin-bottom: 20px;
+}
+
+/* GRID RESPONSIVO DE CINEMAS */
+.cinema-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 90%;
+}
+
+/* CARD DE CINEMA */
+.cinema {
+  background: #2a2a2a;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.cinema:hover {
+  border-color: #FFD700;
+  box-shadow: 0 0 10px #FFD700;
+  transform: translateY(-5px);
+}
+
+/* ------------------------------------------------ */
+/* RESPONSIVIDADE BÁSICA                            */
+/* ------------------------------------------------ */
+@media (max-width: 600px) {
+  .grid-container {
+    margin-left: 0;        /* em telas pequenas, remova a margem fixa */
+    padding-top: 20px;
+  }
+  .cinema-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/payment.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Tickets</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Filmes</a></li>
+                <li><a href="#">Cinemas</a></li>
+                <li><a href="#">Promoções</a></li>
+                <li><a href="admin_login.html">Área do Funcionário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="breadcrumb">
+            <p><a href="index.html">Início</a> > <a href="cinema_selection.html">Cinemas</a> > <a href="movie_selection.html">Filmes</a> > <a href="seat_selection.html">Assentos</a> > <a href="product_selection.html">Produtos</a> > Pagamento</p>
+        </section>
+
+        <div class="payment-container">
+            <div class="order-summary-section">
+                <h2>Resumo do Pedido</h2>
+                <div class="order-details">
+                    <div class="session-info">
+                        <h3>Informações da Sessão</h3>
+                        <p id="cinema-name"></p>
+                        <p id="movie-info"></p>
+                        <p id="session-info"></p>
+                        <p id="seats-info"></p>
+                    </div>
+
+                    <div class="items-breakdown">
+                        <h3>Itens do Pedido</h3>
+                        <div class="tickets-section">
+                            <h4>Ingressos</h4>
+                            <div id="tickets-details"></div>
+                        </div>
+                        
+                        <div class="products-section" id="products-section" style="display: none;">
+                            <h4>Produtos</h4>
+                            <div id="products-details"></div>
+                        </div>
+                    </div>
+
+                    <div class="total-section">
+                        <div class="subtotal-line">
+                            <span>Subtotal Ingressos:</span>
+                            <span id="tickets-subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="subtotal-line">
+                            <span>Subtotal Produtos:</span>
+                            <span id="products-subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="total-line">
+                            <span>Total Geral:</span>
+                            <span id="grand-total">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-section">
+                <h2>Forma de Pagamento</h2>
+                
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="pix">
+                        <input type="radio" id="pix" name="payment-method" value="pix">
+                        <label for="pix">
+                            <div class="method-icon">📱</div>
+                            <div class="method-info">
+                                <h3>PIX</h3>
+                                <p>Pagamento instantâneo</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method" data-method="credit">
+                        <input type="radio" id="credit" name="payment-method" value="credit">
+                        <label for="credit">
+                            <div class="method-icon">💳</div>
+                            <div class="method-info">
+                                <h3>Cartão de Crédito</h3>
+                                <p>Parcelamento disponível</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="payment-method" data-method="debit">
+                        <input type="radio" id="debit" name="payment-method" value="debit">
+                        <label for="debit">
+                            <div class="method-icon">💳</div>
+                            <div class="method-info">
+                                <h3>Cartão de Débito</h3>
+                                <p>Débito à vista</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Formulário PIX -->
+                <div id="pix-form" class="payment-form" style="display: none;">
+                    <h3>Pagamento via PIX</h3>
+                    <div class="pix-info">
+                        <p>Após confirmar o pedido, você receberá um QR Code para pagamento via PIX.</p>
+                        <p>O pagamento deve ser realizado em até 15 minutos.</p>
+                    </div>
+                </div>
+
+                <!-- Formulário Cartão de Crédito -->
+                <div id="credit-form" class="payment-form" style="display: none;">
+                    <h3>Dados do Cartão de Crédito</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="card-number">Número do Cartão</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry-date">Validade</label>
+                                <input type="text" id="expiry-date" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" placeholder="000" maxlength="3">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-name">Nome no Cartão</label>
+                            <input type="text" id="card-name" placeholder="Nome como está no cartão">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="installments">Parcelamento</label>
+                            <select id="installments">
+                                <option value="1">1x sem juros</option>
+                                <option value="2">2x sem juros</option>
+                                <option value="3">3x sem juros</option>
+                                <option value="4">4x com juros</option>
+                                <option value="5">5x com juros</option>
+                                <option value="6">6x com juros</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Formulário Cartão de Débito -->
+                <div id="debit-form" class="payment-form" style="display: none;">
+                    <h3>Dados do Cartão de Débito</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="debit-number">Número do Cartão</label>
+                            <input type="text" id="debit-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="debit-expiry">Validade</label>
+                                <input type="text" id="debit-expiry" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="debit-cvv">CVV</label>
+                                <input type="text" id="debit-cvv" placeholder="000" maxlength="3">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="debit-name">Nome no Cartão</label>
+                            <input type="text" id="debit-name" placeholder="Nome como está no cartão">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="customer-info">
+                    <h3>Dados para Recibo</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="customer-name">Nome Completo</label>
+                            <input type="text" id="customer-name" placeholder="Seu nome completo" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customer-email">E-mail</label>
+                            <input type="email" id="customer-email" placeholder="seu@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="customer-phone">Telefone</label>
+                            <input type="tel" id="customer-phone" placeholder="(11) 99999-9999">
+                        </div>
+                    </form>
+                </div>
+
+                <button id="confirm-payment" class="confirm-payment-btn" disabled>Confirmar Pagamento</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cinema Tickets. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script src="../script/payment.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo gradiente -->
+  <defs>
+    <linearGradient id="movieBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fundo -->
+  <rect width="200" height="300" fill="url(#movieBg)" stroke="#333" stroke-width="2"/>
+  
+  <!-- Moldura do filme -->
+  <rect x="20" y="30" width="160" height="120" fill="#2c2c2c" stroke="#555" stroke-width="2" rx="8"/>
+  
+  <!-- Ícone de filme/câmera -->
+  <g transform="translate(100, 90)">
+    <!-- Corpo da câmera -->
+    <rect x="-25" y="-15" width="50" height="30" fill="#4a4a4a" rx="5"/>
+    <!-- Lente -->
+    <circle cx="0" cy="0" r="12" fill="#666"/>
+    <circle cx="0" cy="0" r="8" fill="#333"/>
+    <circle cx="0" cy="0" r="4" fill="#FFD700"/>
+    <!-- Botões -->
+    <rect x="-20" y="-10" width="6" height="6" fill="#888" rx="2"/>
+    <rect x="-20" y="-2" width="6" height="6" fill="#888" rx="2"/>
+  </g>
+  
+  <!-- Película de filme -->
+  <g transform="translate(100, 180)">
+    <rect x="-40" y="-8" width="80" height="16" fill="#333"/>
+    <rect x="-35" y="-6" width="6" height="12" fill="#666"/>
+    <rect x="-20" y="-6" width="6" height="12" fill="#666"/>
+    <rect x="-5" y="-6" width="6" height="12" fill="#666"/>
+    <rect x="10" y="-6" width="6" height="12" fill="#666"/>
+    <rect x="25" y="-6" width="6" height="12" fill="#666"/>
+  </g>
+  
+  <!-- Estrelas de avaliação -->
+  <g transform="translate(100, 220)">
+    <polygon points="0,-8 2,-2 8,-2 3,1 5,7 0,4 -5,7 -3,1 -8,-2 -2,-2" fill="#FFD700"/>
+    <polygon points="15,-8 17,-2 23,-2 18,1 20,7 15,4 10,7 12,1 7,-2 13,-2" fill="#FFD700"/>
+    <polygon points="30,-8 32,-2 38,-2 33,1 35,7 30,4 25,7 27,1 22,-2 28,-2" fill="#FFD700"/>
+    <polygon points="-15,-8 -13,-2 -7,-2 -12,1 -10,7 -15,4 -20,7 -18,1 -23,-2 -17,-2" fill="#FFD700"/>
+    <polygon points="-30,-8 -28,-2 -22,-2 -27,1 -25,7 -30,4 -35,7 -33,1 -38,-2 -32,-2" fill="#FFD700"/>
+  </g>
+  
+  <!-- Texto -->
+  <text x="100" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#fff">FILME</text>
+  <text x="100" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#aaa">SEM POSTER</text>
+</svg>

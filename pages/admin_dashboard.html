@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Área Administrativa - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/admin_dashboard.css">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-content">
+            <h1>Cinema Tickets - Admin</h1>
+            <div class="user-info">
+                <span id="welcome-message">Bem-vindo, Usuário!</span>
+                <button id="logout-btn" class="logout-btn">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="user-avatar">👤</div>
+                <div class="user-details">
+                    <span id="user-name">Usuário</span>
+                    <span id="user-role">Função</span>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard" class="menu-item active" data-section="dashboard">
+                    <span class="menu-icon">📊</span>
+                    <span class="menu-text">Dashboard</span>
+                </a></li>
+                
+                <li><a href="#movies" class="menu-item" data-section="movies">
+                    <span class="menu-icon">🎬</span>
+                    <span class="menu-text">Filmes e Sessões</span>
+                </a></li>
+                
+                <li><a href="#reports" class="menu-item" data-section="reports">
+                    <span class="menu-icon">📈</span>
+                    <span class="menu-text">Relatórios</span>
+                </a></li>
+                
+                <li id="cinemas-menu" style="display: none;">
+                    <a href="#cinemas" class="menu-item" data-section="cinemas">
+                        <span class="menu-icon">🏢</span>
+                        <span class="menu-text">Gerenciar Cinemas</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="section-header">
+                    <h2>Dashboard</h2>
+                    <p>Visão geral do sistema</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎫</div>
+                        <div class="stat-info">
+                            <h3 id="total-sales">0</h3>
+                            <p>Vendas Hoje</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <h3 id="total-revenue">R$ 0,00</h3>
+                            <p>Receita Hoje</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🎬</div>
+                        <div class="stat-info">
+                            <h3 id="active-movies">0</h3>
+                            <p>Filmes em Cartaz</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🏢</div>
+                        <div class="stat-info">
+                            <h3 id="total-cinemas">0</h3>
+                            <p>Cinemas Ativos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-widgets">
+                    <div class="widget">
+                        <h3>Vendas Recentes</h3>
+                        <div id="recent-sales" class="recent-sales">
+                            <p class="no-data">Nenhuma venda registrada hoje</p>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <h3>Sessões Populares</h3>
+                        <div id="popular-sessions" class="popular-sessions">
+                            <p class="no-data">Dados não disponíveis</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Movies Section -->
+            <section id="movies-section" class="content-section">
+                <div class="section-header">
+                    <h2>Gerenciar Filmes e Sessões</h2>
+                    <button id="add-movie-btn" class="primary-btn">+ Adicionar Filme</button>
+                </div>
+
+                <div class="movies-grid" id="movies-grid">
+                    <!-- Filmes serão carregados dinamicamente -->
+                </div>
+
+                <!-- Modal para adicionar filme -->
+                <div id="movie-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Adicionar Novo Filme</h3>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <form id="movie-form">
+                            <div class="form-group">
+                                <label for="movie-title">Título do Filme</label>
+                                <input type="text" id="movie-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="movie-genre">Gênero</label>
+                                <input type="text" id="movie-genre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="movie-duration">Duração (minutos)</label>
+                                <input type="number" id="movie-duration" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="movie-rating">Classificação</label>
+                                <select id="movie-rating" required>
+                                    <option value="">Selecione</option>
+                                    <option value="Livre">Livre</option>
+                                    <option value="10 anos">10 anos</option>
+                                    <option value="12 anos">12 anos</option>
+                                    <option value="14 anos">14 anos</option>
+                                    <option value="16 anos">16 anos</option>
+                                    <option value="18 anos">18 anos</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="movie-sessions">Horários das Sessões</label>
+                                <div id="sessions-container">
+                                    <div class="session-input">
+                                        <input type="time" name="session-time" required>
+                                        <select name="session-room" required>
+                                            <option value="">Selecione a sala</option>
+                                            <option value="Sala 1">Sala 1</option>
+                                            <option value="Sala 2">Sala 2</option>
+                                            <option value="Sala 3">Sala 3</option>
+                                            <option value="Sala 4">Sala 4</option>
+                                        </select>
+                                        <button type="button" class="remove-session">-</button>
+                                    </div>
+                                </div>
+                                <button type="button" id="add-session">+ Adicionar Horário</button>
+                            </div>
+                            <div class="modal-actions">
+                                <button type="button" class="secondary-btn close-modal">Cancelar</button>
+                                <button type="submit" class="primary-btn">Salvar Filme</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="content-section">
+                <div class="section-header">
+                    <h2>Relatórios de Vendas</h2>
+                    <div class="date-filter">
+                        <input type="date" id="start-date">
+                        <input type="date" id="end-date">
+                        <button id="filter-btn" class="primary-btn">Filtrar</button>
+                    </div>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Vendas por Período</h3>
+                        <div id="sales-chart" class="chart-container">
+                            <p>Gráfico de vendas será exibido aqui</p>
+                        </div>
+                    </div>
+
+                    <div class="report-card">
+                        <h3>Filmes Mais Vendidos</h3>
+                        <div id="movies-ranking" class="ranking-list">
+                            <p>Ranking de filmes será exibido aqui</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sales-table">
+                    <h3>Detalhes das Vendas</h3>
+                    <div class="table-container">
+                        <table id="sales-table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Filme</th>
+                                    <th>Assentos</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sales-tbody">
+                                <tr>
+                                    <td colspan="6" class="no-data">Nenhuma venda encontrada</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cinemas Section (apenas para gerentes) -->
+            <section id="cinemas-section" class="content-section">
+                <div class="section-header">
+                    <h2>Gerenciar Cinemas</h2>
+                    <button id="add-cinema-btn" class="primary-btn">+ Adicionar Cinema</button>
+                </div>
+
+                <div class="cinemas-grid" id="cinemas-grid">
+                    <!-- Cinemas serão carregados dinamicamente -->
+                </div>
+
+                <!-- Modal para adicionar cinema -->
+                <div id="cinema-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Adicionar Novo Cinema</h3>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <form id="cinema-form">
+                            <div class="form-group">
+                                <label for="cinema-name">Nome do Cinema</label>
+                                <input type="text" id="cinema-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cinema-address">Endereço</label>
+                                <input type="text" id="cinema-address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cinema-rooms">Número de Salas</label>
+                                <input type="number" id="cinema-rooms" min="1" max="20" required>
+                            </div>
+                            <div class="modal-actions">
+                                <button type="button" class="secondary-btn close-modal">Cancelar</button>
+                                <button type="submit" class="primary-btn">Salvar Cinema</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../script/script.js"></script>
+    <script src="../script/admin_dashboard.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Área Administrativa - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/admin_login.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Tickets</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Filmes</a></li>
+                <li><a href="#">Cinemas</a></li>
+                <li><a href="#">Promoções</a></li>
+                <li><a href="admin_login.html" class="active">Área do Funcionário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="admin-icon">👤</div>
+                    <h2>Área Administrativa</h2>
+                    <p>Acesso restrito para funcionários e gerentes</p>
+                </div>
+
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-type">Tipo de Usuário</label>
+                        <select id="user-type" name="user-type" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="funcionario">Funcionário</option>
+                            <option value="gerente">Gerente</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="login-btn">Entrar</button>
+                </form>
+
+                <div class="demo-credentials">
+                    <h4>Credenciais de Demonstração:</h4>
+                    <div class="demo-section">
+                        <strong>Funcionário:</strong>
+                        <p>Usuário: funcionario | Senha: func123</p>
+                    </div>
+                    <div class="demo-section">
+                        <strong>Gerente:</strong>
+                        <p>Usuário: gerente | Senha: ger123</p>
+                    </div>
+                </div>
+
+                <div class="error-message" id="error-message" style="display: none;">
+                    <span class="error-icon">⚠️</span>
+                    <span class="error-text">Credenciais inválidas. Tente novamente.</span>
+                </div>
+            </div>
+
+            <div class="features-info">
+                <h3>Funcionalidades Disponíveis</h3>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-content">
+                        <h4>Funcionário</h4>
+                        <ul>
+                            <li>Adicionar filmes e horários de sessões</li>
+                            <li>Visualizar relatórios de vendas</li>
+                            <li>Gerenciar programação do cinema</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👑</div>
+                    <div class="feature-content">
+                        <h4>Gerente</h4>
+                        <ul>
+                            <li>Todas as funções do funcionário</li>
+                            <li>Gerenciar cinemas (adicionar/excluir)</li>
+                            <li>Relatórios avançados e analytics</li>
+                            <li>Configurações do sistema</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cinema Tickets. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script src="../script/admin_login.js"></script>
+</body>
+</html>
+

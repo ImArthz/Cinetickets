@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha seu Cinema - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/cinema_selection.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Tickets</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="movie_selection.html">Filmes</a></li>
+                <li><a href="cinema_selection.html">Cinemas</a></li>
+                <li><a href="promotions.html">Promoções</a></li>
+                <li><a href="admin_login.html">Área do Funcionário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="breadcrumb">
+            <p><a href="index.html">Início</a> > Escolha seu Cinema</p>
+        </section>
+
+        <section class="cinema-selection">
+            <h2>Escolha seu Cinema</h2>
+            <div class="cinema-grid" id="cinemaGrid">
+                <!-- Os cinemas serão inseridos aqui via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cinema Tickets. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script>
+    // Função para buscar e exibir os cinemas dinamicamente
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch("https://p7g98h6i1c.execute-api.us-east-2.amazonaws.com/default/select_cinema", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({}) // Envie o que for necessário para seu backend retornar todos os cinemas
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro na requisição: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Supondo que a resposta venha como { body: '[{"id":1,"nome":"...",...}, ...]' }
+            let cinemas = [];
+            if (data.body) {
+                try {
+                    cinemas = JSON.parse(data.body);
+                } catch (e) {
+                    cinemas = [];
+                }
+            } else if (Array.isArray(data)) {
+                cinemas = data;
+            }
+            const grid = document.getElementById('cinemaGrid');
+            grid.innerHTML = '';
+            if (cinemas.length === 0) {
+                grid.innerHTML = '<p>Nenhum cinema encontrado.</p>';
+                return;
+            }
+            cinemas.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'cinema-card';
+                card.setAttribute('data-cinema-id', c.id);
+                card.innerHTML = `
+                    <img src="${c.imagem || '../img/cinema.jpg'}" alt="${c.nome}">
+                    <div class="cinema-info">
+                        <h3>${c.nome}</h3>
+                        <p>📍 ${c.cidade || ''}</p>
+                        <p>🎬 ${c.num_salas || ''} salas disponíveis</p>
+                        <button class="select-cinema-btn">Selecionar</button>
+                    </div>
+                `;
+                // Adiciona evento ao botão para redirecionar com o cinema escolhido
+                card.querySelector('.select-cinema-btn').addEventListener('click', function() {
+                    // Passa o id e nome do cinema na query string
+                    const params = new URLSearchParams({
+                        cinemaId: c.id || c.nome,
+                        cinemaNome: c.nome
+                    });
+                    window.location.href = `movie_selection.html?${params.toString()}`;
+                });
+                grid.appendChild(card);
+            });
+        })
+        .catch(error => {
+            const grid = document.getElementById('cinemaGrid');
+            grid.innerHTML = '<p style="color:red">Erro ao carregar cinemas: ' + error.message + '</p>';
+        });
+    });
+    </script>
+</body>
+</html>
+

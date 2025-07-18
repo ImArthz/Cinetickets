@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha seu Filme - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/movie_selection.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Tickets</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Filmes</a></li>
+                <li><a href="#">Cinemas</a></li>
+                <li><a href="#">Promoções</a></li>
+                <li><a href="admin_login.html">Área do Funcionário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="breadcrumb">
+            <p><a href="index.html">Início</a> > <a href="cinema_selection.html">Cinemas</a> > Filmes e Sessões</p>
+        </section>
+
+        <section class="cinema-info">
+            <h2 id="selected-cinema-name">Cinema Selecionado</h2>
+            <p>Escolha o filme e horário desejado</p>
+        </section>
+
+        <section class="movie-selection">
+            <div class="movie-list" id="movieList">
+                <!-- Os filmes serão inseridos aqui via JavaScript -->
+            </div>
+        </section>
+
+        <section class="selection-summary" id="selection-summary" style="display: none;">
+            <h3>Sua Seleção:</h3>
+            <p id="selected-movie-info"></p>
+            <p id="selected-session-info"></p>
+            <button id="continue-btn" class="continue-btn">Continuar para Seleção de Assentos</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cinema Tickets. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script>
+    // Função para buscar e exibir os filmes dinamicamente
+    document.addEventListener('DOMContentLoaded', function() {
+        // Função para obter parâmetros da URL
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                cinemaId: params.get('cinemaId'),
+                cinemaNome: params.get('cinemaNome')
+            };
+        }
+
+        // Busca as informações do cinema - primeiro da URL, depois do localStorage
+        const urlParams = getUrlParams();
+        let cinemaId = urlParams.cinemaId;
+        let cinemaName = urlParams.cinemaNome;
+
+        // Se não veio pela URL, tenta pegar do localStorage
+        if (!cinemaId) {
+            cinemaId = localStorage.getItem('selectedCinemaId');
+            cinemaName = localStorage.getItem('selectedCinemaName');
+            
+            // Tenta também o formato do cinema_selection.js
+            if (!cinemaId) {
+                const selectedCinema = localStorage.getItem('selectedCinema');
+                if (selectedCinema) {
+                    try {
+                        const cinema = JSON.parse(selectedCinema);
+                        cinemaId = cinema.id;
+                        cinemaName = cinema.name;
+                    } catch (e) {
+                        console.error('Erro ao parsear cinema do localStorage:', e);
+                    }
+                }
+            }
+        }
+
+        if (!cinemaId) {
+            alert('Nenhum cinema selecionado. Redirecionando para a seleção de cinemas.');
+            window.location.href = 'cinema_selection.html';
+            return;
+        }
+
+        // Atualiza o nome do cinema na página
+        document.getElementById('selected-cinema-name').textContent = cinemaName;
+
+        // Função para buscar filmes
+        async function fetchFilmes() {
+            try {
+                const response = await fetch('https://p7g98h6i1c.execute-api.us-east-2.amazonaws.com/default/select_filme', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Erro na requisição: ' + response.status);
+                }
+                
+                const data = await response.json();
+                let filmes = [];
+                if (data.body) {
+                    try {
+                        filmes = JSON.parse(data.body);
+                    } catch (e) {
+                        filmes = [];
+                    }
+                } else if (Array.isArray(data)) {
+                    filmes = data;
+                }
+                
+                return filmes;
+            } catch (error) {
+                console.error('Erro ao buscar filmes:', error);
+                return [];
+            }
+        }
+
+        // Função para buscar sessões
+        async function fetchSessoes() {
+            try {
+                const response = await fetch('https://p7g98h6i1c.execute-api.us-east-2.amazonaws.com/default/select_sessao', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Erro na requisição: ' + response.status);
+                }
+                
+                const data = await response.json();
+                let sessoes = [];
+                if (data.body) {
+                    try {
+                        sessoes = JSON.parse(data.body);
+                    } catch (e) {
+                        sessoes = [];
+                    }
+                } else if (Array.isArray(data)) {
+                    sessoes = data;
+                }
+                
+                return sessoes;
+            } catch (error) {
+                console.error('Erro ao buscar sessões:', error);
+                return [];
+            }
+        }
+
+        // Função principal para carregar filmes e sessões
+        async function carregarFilmesESessoes() {
+            const movieList = document.getElementById('movieList');
+            movieList.innerHTML = '<p>Carregando filmes...</p>';
+            
+            try {
+                const [filmes, todasAsSessoes] = await Promise.all([
+                    fetchFilmes(),
+                    fetchSessoes()
+                ]);
+
+                // Primeiro, filtra os filmes que pertencem ao cinema selecionado
+                const filmesDoCinema = filmes.filter(filme => 
+                    filme.cinema_nome === cinemaName
+                );
+
+                // Depois, filtra as sessões para apenas as do cinema selecionado
+                const sessoesDoCinema = todasAsSessoes.filter(sessao => 
+                    sessao.cinema_nome === cinemaName
+                );
+                
+                // Agrupa sessões por filme
+                const sessoesPorFilme = sessoesDoCinema.reduce((acc, sessao) => {
+                    const filmeId = sessao.filme_titulo;
+                    if (!acc[filmeId]) {
+                        acc[filmeId] = [];
+                    }
+                    acc[filmeId].push(sessao);
+                    return acc;
+                }, {});
+
+                movieList.innerHTML = '';
+                
+                if (filmesDoCinema.length === 0) {
+                    movieList.innerHTML = '<p>Nenhum filme encontrado para este cinema.</p>';
+                    return;
+                }
+
+                // Encontra os filmes que têm sessões neste cinema
+                filmesDoCinema.forEach(filme => {
+                    const filmeKey = filme.titulo;
+                    if (sessoesPorFilme[filmeKey]) {
+                        const movieCard = document.createElement('div');
+                        movieCard.className = 'movie-card';
+                        movieCard.setAttribute('data-movie-id', filme.id_filme);
+                        
+                        // Armazenar dados do filme no card para uso posterior
+                        movieCard.movieData = {
+                            title: filme.titulo,
+                            sinopse: filme.sinopse || filme.Sinopse || 'Sinopse não disponível',
+                            genero: filme.genero || filme.Genero || 'Gênero não informado',
+                            poster: filme.poster || '../img/movie-default.svg',
+                            trailer: filme.trailer || null
+                        };
+
+                        // Cria os botões de horário dinamicamente
+                        const timeSlots = sessoesPorFilme[filmeKey].map(sessao => {
+                            // Formatar o horário para mostrar data e hora
+                            let dataFormatada = '';
+                            let horaFormatada = '';
+                            
+                            if (sessao.horario) {
+                                try {
+                                    const dataHora = new Date(sessao.horario);
+                                    // Verifica se a data é válida
+                                    if (!isNaN(dataHora.getTime())) {
+                                        const dia = dataHora.getDate().toString().padStart(2, '0');
+                                        const mes = (dataHora.getMonth() + 1).toString().padStart(2, '0');
+                                        const horas = dataHora.getHours().toString().padStart(2, '0');
+                                        const minutos = dataHora.getMinutes().toString().padStart(2, '0');
+                                        
+                                        dataFormatada = `${dia}/${mes}`;
+                                        horaFormatada = `${horas}:${minutos}`;
+                                    } else {
+                                        // Se não conseguir parsear como data, tenta extrair apenas a hora
+                                        horaFormatada = sessao.horario.substring(0, 5);
+                                        dataFormatada = 'Hoje';
+                                    }
+                                } catch (e) {
+                                    // Fallback para formato antigo
+                                    horaFormatada = sessao.horario.substring(0, 5);
+                                    dataFormatada = 'Hoje';
+                                }
+                            }
+                            
+                            return `<button class="time-slot" data-time="${sessao.horario}" data-room="Sala ${sessao.sala_numero}" data-session-id="${sessao.id || sessao.id_sessao}">
+                                <div class="session-date">${dataFormatada}</div>
+                                <div class="session-time">${horaFormatada}</div>
+                                <div class="session-room">Sala ${sessao.sala_numero}</div>
+                            </button>`;
+                        }).join('');
+
+                        movieCard.innerHTML = `
+                            <img src="${filme.poster || '../img/movie-default.svg'}" alt="${filme.titulo}">
+                            <div class="movie-info">
+                                <h3>${filme.titulo}</h3>
+                                <p class="genre">${filme.sinopse ? filme.sinopse.substring(0, 100) + '...' : 'Sinopse não disponível'}</p>
+                                <p class="cinema-info">🎬 ${filme.cinema_nome} - ${filme.cinema_cidade}</p>
+                                ${filme.trailer ? `<p class="trailer"><a href="${filme.trailer}" target="_blank">🎥 Assistir trailer</a></p>` : ''}
+                            </div>
+                            <div class="showtimes">
+                                <h4>Horários Disponíveis:</h4>
+                                <div class="time-slots">
+                                    ${timeSlots}
+                                </div>
+                            </div>
+                        `;
+
+                        // Adiciona eventos aos botões de horário
+                        movieCard.addEventListener('click', function(event) {
+                            // Verifica se o clique foi no botão ou em um dos elementos filhos
+                            const clickedElement = event.target;
+                            const timeSlotButton = clickedElement.closest('.time-slot');
+                            
+                            if (timeSlotButton) {
+                                const movieTitle = movieCard.querySelector('h3').textContent;
+                                const time = timeSlotButton.dataset.time;
+                                const room = timeSlotButton.dataset.room;
+                                const sessionId = timeSlotButton.dataset.sessionId;
+
+                                // Salva todas as informações necessárias no localStorage
+                                localStorage.setItem('selectedCinema', JSON.stringify({
+                                    id: cinemaId,
+                                    name: cinemaName
+                                }));
+                                
+                                localStorage.setItem('selectedMovie', JSON.stringify({
+                                    title: movieTitle,
+                                    synopsis: filme.sinopse || 'Sinopse não disponível',
+                                    genre: filme.genero || 'Gênero não informado',
+                                    poster: filme.poster || '../img/movie-default.svg',
+                                    trailer: filme.trailer || null
+                                }));
+                                
+                                localStorage.setItem('selectedSession', JSON.stringify({
+                                    time: time,
+                                    room: room,
+                                    sessionId: sessionId,
+                                    cinemaId: cinemaId,
+                                    cinemaName: cinemaName,
+                                    movieTitle: movieTitle
+                                }));
+
+                                // Mantém compatibilidade com formato antigo
+                                localStorage.setItem('selectedMovieTitle', movieTitle);
+                                localStorage.setItem('selectedSessionTime', time);
+                                localStorage.setItem('selectedSessionRoom', room);
+                                localStorage.setItem('selectedSessionId', sessionId);
+
+                                // Redireciona para a próxima página
+                                window.location.href = 'seat_selection.html';
+                            }
+                        });
+
+                        movieList.appendChild(movieCard);
+                    }
+                });
+
+                if (movieList.innerHTML === '') {
+                    movieList.innerHTML = '<p>Nenhum filme disponível para este cinema.</p>';
+                }
+
+            } catch (error) {
+                console.error('Erro ao carregar filmes e sessões:', error);
+                movieList.innerHTML = '<p style="color:red">Erro ao carregar filmes: ' + error.message + '</p>';
+            }
+        }
+
+        // Inicia o carregamento
+        carregarFilmesESessoes();
+    });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+/* Estilos específicos para a página de seleção de cinema */
+
+.breadcrumb {
+    background-color: #e9ecef;
+    padding: 10px 20px;
+    margin-bottom: 0;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.cinema-selection h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.cinema-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.cinema-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.cinema-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cinema-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.cinema-info {
+    padding: 20px;
+}
+
+.cinema-info h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.4em;
+}
+
+.cinema-info p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.select-cinema-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.select-cinema-btn:hover {
+    background-color: #0056b3;
+}
+
+.cinema-card.selected {
+    border: 3px solid #007bff;
+    transform: translateY(-5px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cinema-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    
+    .cinema-card {
+        margin-bottom: 15px;
+    }
+}
+

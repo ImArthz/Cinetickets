@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Confirmada - Cinema Tickets</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/confirmation.css">
+</head>
+<body>
+    <header>
+        <h1>Cinema Tickets</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Filmes</a></li>
+                <li><a href="#">Cinemas</a></li>
+                <li><a href="#">Promoções</a></li>
+                <li><a href="admin_login.html">Área do Funcionário</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="confirmation-container">
+            <div class="success-message">
+                <div class="success-icon">✅</div>
+                <h1>Compra Realizada com Sucesso!</h1>
+                <p>Seu pedido foi processado e você receberá um e-mail de confirmação em breve.</p>
+            </div>
+
+            <div class="receipt-container">
+                <div class="receipt-header">
+                    <h2>Recibo de Compra</h2>
+                    <div class="receipt-info">
+                        <p><strong>Número do Pedido:</strong> <span id="order-number"></span></p>
+                        <p><strong>Data:</strong> <span id="order-date"></span></p>
+                        <p><strong>Hora:</strong> <span id="order-time"></span></p>
+                    </div>
+                </div>
+
+                <div class="customer-info">
+                    <h3>Dados do Cliente</h3>
+                    <p><strong>Nome:</strong> <span id="customer-name"></span></p>
+                    <p><strong>E-mail:</strong> <span id="customer-email"></span></p>
+                    <p><strong>Telefone:</strong> <span id="customer-phone"></span></p>
+                </div>
+
+                <div class="session-details">
+                    <h3>Detalhes da Sessão</h3>
+                    <div class="session-card">
+                        <p><strong>Cinema:</strong> <span id="cinema-name"></span></p>
+                        <p><strong>Filme:</strong> <span id="movie-title"></span></p>
+                        <p><strong>Data e Horário:</strong> <span id="session-datetime"></span></p>
+                        <p><strong>Sala:</strong> <span id="session-room"></span></p>
+                        <p><strong>Assentos:</strong> <span id="selected-seats"></span></p>
+                    </div>
+                </div>
+
+                <div class="order-items">
+                    <h3>Itens do Pedido</h3>
+                    
+                    <div class="items-section">
+                        <h4>Ingressos</h4>
+                        <div id="tickets-list"></div>
+                    </div>
+
+                    <div class="items-section" id="products-section" style="display: none;">
+                        <h4>Produtos</h4>
+                        <div id="products-list"></div>
+                    </div>
+                </div>
+
+                <div class="payment-info">
+                    <h3>Informações de Pagamento</h3>
+                    <p><strong>Método de Pagamento:</strong> <span id="payment-method"></span></p>
+                    <div id="pix-qr" style="display: none;">
+                        <div class="qr-code-container">
+                            <div class="qr-code">
+                                <div class="qr-placeholder">
+                                    📱<br>
+                                    QR Code PIX<br>
+                                    <small>Escaneie para pagar</small>
+                                </div>
+                            </div>
+                            <p class="pix-instructions">
+                                <strong>Instruções para pagamento PIX:</strong><br>
+                                1. Abra o app do seu banco<br>
+                                2. Escaneie o QR Code acima<br>
+                                3. Confirme o pagamento<br>
+                                <em>Prazo: 15 minutos</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-summary">
+                    <div class="total-line">
+                        <span>Subtotal Ingressos:</span>
+                        <span id="tickets-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="total-line">
+                        <span>Subtotal Produtos:</span>
+                        <span id="products-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="grand-total-line">
+                        <span>Total Pago:</span>
+                        <span id="grand-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="receipt-footer">
+                    <p><strong>Importante:</strong></p>
+                    <ul>
+                        <li>Chegue ao cinema com pelo menos 15 minutos de antecedência</li>
+                        <li>Apresente este recibo (impresso ou digital) na entrada</li>
+                        <li>Leve um documento de identidade</li>
+                        <li>Em caso de dúvidas, entre em contato conosco</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="print-receipt" class="action-btn print-btn">🖨️ Imprimir Recibo</button>
+                <button id="download-receipt" class="action-btn download-btn">📄 Baixar PDF</button>
+                <button id="email-receipt" class="action-btn email-btn">📧 Reenviar por E-mail</button>
+                <a href="index.html" class="action-btn home-btn">🏠 Voltar ao Início</a>
+            </div>
+
+            <div class="email-status" id="email-status" style="display: none;">
+                <div class="status-message">
+                    <span class="status-icon">📧</span>
+                    <span class="status-text">E-mail enviado com sucesso!</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Cinema Tickets. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="../script/script.js"></script>
+    <script src="../script/confirmation.js"></script>
+</body>
+</html>
+
